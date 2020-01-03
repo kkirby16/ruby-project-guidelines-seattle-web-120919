@@ -8,15 +8,6 @@ require 'pry'
 class CommandLineInterface
 
 def greet
-    puts "
-     _    _ _ _          _____  _                             
-    | |  | (_) |        |  __ \| |                            
-    | |__| |_| | _____  | |__) | | __ _ _ __  _ __   ___ _ __ 
-    |  __  | | |/ / _ \ |  ___/| |/ _` | '_ \| '_ \ / _ \ '__|
-    | |  | | |   <  __/ | |    | | (_| | | | | | | |  __/ |   
-    |_|  |_|_|_|\_\___| |_|    |_|\__,_|_| |_|_| |_|\___|_|   
-
-    "
     puts 'Welcome to Hike Planner, the best resource for planning your favorite hikes!'
 end
 
@@ -56,6 +47,7 @@ def display_options(user_id)
         change_name(user_id)
     elsif user_selection != "1" && user_selection != "2" && user_selection != "3"
         puts "Invalid entry. Please try again."
+        display_options($user_id)
     end 
 end 
     
@@ -79,6 +71,10 @@ def next_menu_question(user_id)
     display_options(user_id)
     elsif user_selection == "2" 
     make_favorites(user_id)
+    elsif 
+    user_selection != "1" && user_selection != "2" 
+    puts "Invalid entry. Please try again."
+    display_options($user_id)
     end 
 end
 end 
@@ -89,10 +85,7 @@ def make_favorites(user_id) #the area where they look at the local hikes to make
     favorite_hikes = [] #had to pass that user_id around. had to chomp it split it loop through the hike id and convert to an integer. to get user id we had to find or bcreate by, grab that id and pass it around.
     Hike.all.each do |hike|
         puts "Hike ID: #{hike.id}   Hike Name: #{hike.name}" 
-        
-        #binding.pry
     end  
-        #binding.pry
         puts ""
     #     puts 'Please enter your name.'
     # user_input = gets.chomp
@@ -112,7 +105,7 @@ def make_favorites(user_id) #the area where they look at the local hikes to make
         end 
         puts ""
         favorite_hikes(user_id)
-
+    end
         #.each will grab the user in[ut and do it however many times it needs to be done
 
         #whatever kevs idea is , hike_id: , 
@@ -149,11 +142,6 @@ def make_favorites(user_id) #the area where they look at the local hikes to make
 #     if 
 
     
-    
-
-        
-    end
-
 
 def favorite_hikes(user_id) #the area where the user can see their list of favorite hikes.
 #one line sql line that greg said I know how to do for showing the favorites of the user. 
@@ -225,7 +213,7 @@ def delete_favorites(user_id) #the area where a user can delete certain hikes fr
 
 #If the user types and spells the hikes correctly then their favorites list should be updated and they are given a message that says “Your favorites list has been updated.” Then below that they should see a menu which is the below method
 puts ""
-puts "Which of your below favorites do you want to delete?"
+puts "Which of your below favorites do you want to delete? Enter a Hike ID number from the above list for which hike you want to delete."
 puts ""
 hikes_names_array =[]
 hikes_id_array = Favorite.where(user_id: user_id).pluck("hike_id").uniq
@@ -234,23 +222,41 @@ hikes_id_array.each do |hike|
     #binding.pry
 end
 puts hikes_names_array.join(", ")
+# Get response from user
+response = gets.chomp
+
+# Use response to find the hike
+favorite_choice = Favorite.find_by(hike_id: response)
+# binding.pry
+
+
+# User the hike's ID to delete it from Favorites
+# Favorite.destroy(id: hike.id)
+
+Favorite.destroy(favorite_choice.id) #favorite choice was an array of two things and needss to be an array of one thing. 
 
 puts "" #this puts a new line in between the delete favorite hikes screen and the delete_favorite_hikes_menu_question
+puts 
+puts ""
+puts "Your selection has been deleted."
+puts ""
 delete_favorite_hikes_menu_question
 end 
 
 def delete_favorite_hikes_menu_question
+    puts ""
+    puts "Your favorites list has been updated."
     puts ""
     puts "To go back to your favorites list press 1"
     puts "To go back to the list of local hikes press 2"
     puts "To go back to the main menu press 3"
     user_selection = gets.chomp 
     if user_selection == "1" 
-    favorite_hikes
+    favorite_hikes($user_id)
     elsif user_selection == "2" 
-    list_of_local_hikes
+    list_of_local_hikes($user_id)
     elsif user_selection == "3"
-    display_options
+    display_options($user_id)
     end 
 end  
 

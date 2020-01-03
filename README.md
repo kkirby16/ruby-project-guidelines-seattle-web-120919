@@ -1,3 +1,18 @@
+How to install: Run bundle install in the terminal.
+
+How to use the project as a user: 
+1. Type ruby bin/run.rb into the terminal. 
+2. Enter your name 
+3. Then you will be directed to a menu that allows you to either view a list of local hikes you could go on, view your favorite hike list, or change your name in the program. 
+    If you want to view a list of local hikes press 1. Then you can choose to go back to the main menu or to make a favorite hike list from the list of local hikes you are seeing. 
+    
+    If you want to make a favorites list of your own favorite hikes, you'd press 2 and then you will see the local hikes you could go on with each one having its own hike ID number before the hike name. Enter the above ID numbers associated with the specific hikes that you want to add to your favorites list and then press enter (Hike ID's should be entered in this format example, thus each hike ID separated by a comma and a space: 1, 3, 5). Once you've entered the hike IDs that are associated with the hikes you want to be in your favorites list, you will see a message showing you what your favorite hikes are, followed by another menu with options. If you want to change your name, press 1 and then enter in a new name. To delete certain hikes from your favorites list, press 2 and then enter the hike IDs of the hikes you want deleted from your favorites list. To go back to the list of local hikes press 3. To go back to the main menu press 4.
+
+    If from the main menu you want to view your current favorite hike list then press 
+
+
+
+contributors guide: should just be shoutouts to some people that helped you or something. 
 # Module One Final Project Guidelines
 
 Congratulations, you're at the end of module one! You've worked crazy hard to get here and have learned a ton.

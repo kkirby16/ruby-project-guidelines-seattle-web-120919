@@ -5,7 +5,7 @@ require 'faker'
 end 
 
 10.times do 
-    Hike.create(name: Faker::Name.name, address: Faker::Address.city, difficulty_level: Faker::Number.within(range: 1..5)) #could fill manually with my own hike name data
+    Hike.create(name: Faker::Address.community, address: Faker::Address.city, difficulty_level: Faker::Number.within(range: 1..5)) #could fill manually with my own hike name data
 end #connecting to api could be a stretch 
 
 10.times do 
