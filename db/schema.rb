@@ -15,23 +15,23 @@ ActiveRecord::Schema.define(version: 3) do
   create_table "favorites", force: :cascade do |t|
     t.string   "notes"
     t.integer  "user_id"
-    t.integer  "hiker_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer  "hike_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "hikes", force: :cascade do |t|
     t.string   "name"
     t.integer  "difficulty_level"
     t.string   "address"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
